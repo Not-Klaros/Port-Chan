@@ -40,3 +40,26 @@ body {
 .tab-button:hover {
   transform: scale(1.1);
 }
+
+/* Layout for the blog-style projects page */
+.projects-layout {
+  display: flex;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.project-left,
+.project-right {
+  background-color: #1e1e1e;
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.project-left {
+  flex-basis: 30%;
+}
+
+.project-right {
+  flex-basis: 70%;
+}
