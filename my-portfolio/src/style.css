@@ -3,9 +3,40 @@ body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background-color: #121212;
   color: white;
-  overflow: hidden;
+  min-height: 100vh;
 }
 
-button {
+.app-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.nav-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  padding: 1rem;
+  width: 100%;
+  border-bottom: 1px solid white;
+}
+
+.content {
+  padding: 0 24px;
+  width: 100%;
+  box-sizing: border-box;
+  text-align: left;
+  margin-top: 1rem;
+}
+
+.tab-button {
+  padding: 0.5rem 1rem;
+  border: 1px solid white;
   cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.tab-button:hover {
+  transform: scale(1.1);
 }
