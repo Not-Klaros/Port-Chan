@@ -60,14 +60,14 @@ body {
 .category-box {
   background-color: #1e1e1e;
   padding: 0.5rem 1rem;
-  border-radius: 8px;
+  border-radius: 1px;
 }
 
 .project-right {
   flex-basis: 70%;
   background-color: #1e1e1e;
   padding: 1rem;
-  border-radius: 8px;
+  border-radius: 1px;
 }
 
 .project-grid {
@@ -79,5 +79,5 @@ body {
 .project-item {
   background-color: #272727;
   padding: 1rem;
-  border-radius: 8px;
+  border-radius: 1px;
 }
