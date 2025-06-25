@@ -16,6 +16,11 @@ const Projects = () => (
         {projectTitles.map((title) => (
           <div key={title} className="project-item">
             {title}
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
+              Magnam numquam, autem facere officia placeat eum unde quas aspernatur 
+              eligendi deleniti corporis, libero cupiditate id esse eaque at iure nemo eos. 
+              Maiores inventore laborum expedita doloribus explicabo. Amet ut totam officiis 
+              facilis maxime, est iure laborum.</p>
           </div>
         ))}
       </div>

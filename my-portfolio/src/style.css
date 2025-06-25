@@ -65,7 +65,7 @@ body {
 
 .project-right {
   flex-basis: 70%;
-  background-color: #1e1e1e;
+  /* background-color: #1e1e1e; */
   padding: 1rem;
   border-radius: 1px;
 }
