@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Feed from './pages/Feed';
 import Projects from './pages/Projects';
@@ -9,6 +9,21 @@ type Tab = typeof tabs[number];
 
 function App() {
   const [tab, setTab] = useState<Tab>('feed');
+
+  useEffect(() => {
+    const applyAnimation = () => {
+      document.querySelectorAll<HTMLElement>('.glitch').forEach((el) => {
+        el.style.animation = 'none';
+        // force reflow to reset the animation
+        void el.offsetWidth;
+        el.style.animation = 'glitch-text 2s';
+      });
+    };
+
+    applyAnimation();
+    const interval = setInterval(applyAnimation, 7000);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <div className="app-container">

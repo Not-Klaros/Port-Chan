@@ -48,7 +48,8 @@ body {
 /* Subtle glitch text effect placed on the text itself */
 .glitch {
   display: inline-block;
-  animation: glitch-text 2s infinite;
+  /* run the glitch animation once when applied */
+  animation: glitch-text 2s;
 }
 
 @keyframes glitch-text {
