@@ -27,8 +27,8 @@ const Projects = () => (
       <div className="project-grid">
         {projects.map((project) => (
           <div key={project.title} className="project-item">
-            <h2>{project.title}</h2>
             <img src={project.image} alt={project.title} />
+            <h2>{project.title}</h2>
             <p>
               Lorem ipsum dolor, sit amet consectetur adipisicing elit.
               Magnam numquam, autem facere officia placeat eum unde quas aspernatur
