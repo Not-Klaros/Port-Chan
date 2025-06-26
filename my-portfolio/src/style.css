@@ -67,6 +67,14 @@ body {
   border-radius: 1px;
 }
 
+.sticky-title {
+  position: sticky;
+  top: 0;
+  background-color: #121212;
+  z-index: 50;
+  padding: 0.5rem 0;
+}
+
 .project-right {
   flex-basis: 70%;
   /* background-color: #1e1e1e; */
