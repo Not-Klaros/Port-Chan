@@ -21,7 +21,7 @@ function App() {
     };
 
     applyAnimation();
-    const interval = setInterval(applyAnimation, 7000);
+    const interval = setInterval(applyAnimation, 10000);
     return () => clearInterval(interval);
   }, []);
 
