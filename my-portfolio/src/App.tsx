@@ -2,9 +2,9 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Feed from './pages/Feed';
 import Projects from './pages/Projects';
-import About from './pages/About';
+import About from './pages/Resume';
 
-const tabs = ['feed', 'projects', 'about'] as const;
+const tabs = ['feed', 'projects', 'resume'] as const;
 type Tab = typeof tabs[number];
 
 function App() {
@@ -35,7 +35,7 @@ function App() {
           >
             {tab === 'feed' && <Feed />}
             {tab === 'projects' && <Projects />}
-            {tab === 'about' && <About />}
+            {tab === 'resume' && <About />}
           </motion.div>
         </AnimatePresence>
       </div>
