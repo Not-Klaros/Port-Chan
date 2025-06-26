@@ -82,6 +82,13 @@ body {
   border-radius: 1px;
 }
 
+.project-item h2 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.25rem;
+  border-bottom: 1px solid #444;
+}
+
 /* Layout for the blog-style feed page */
 .feed-layout {
   display: flex;
@@ -112,4 +119,11 @@ body {
   background-color: #272727;
   padding: 1rem;
   border-radius: 1px;
+}
+
+.feed-block h2 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.25rem;
+  border-bottom: 1px solid #444;
 }
