@@ -19,7 +19,7 @@ const posts = [
 const Feed = () => (
   <div className="feed-layout">
     <div className="feed-left">
-      <h1>Feed</h1>
+      <h1 className="sticky-title">Feed</h1>
       <p className="profile-description">
         Hey there! I&#39;m Carlos, a developer who loves building web experiences.
       </p>
