@@ -1,7 +1,7 @@
 var drops = 20; // number of droplets
 var speed = 70; // animation speed
 var size = 8;   // starting size of droplets
-var colours = ['#00ffff', '#ff00ff', '#00ff73'];
+var colours = ['#ffffff', '#fff', '#fff'];
 var border = '#fff';
 
 var swide, shigh;
