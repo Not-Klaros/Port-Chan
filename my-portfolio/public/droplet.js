@@ -1,7 +1,7 @@
 var drops = 20; // number of droplets
 var speed = 70; // animation speed
 var size = 8;   // starting size of droplets
-var colour = '#0ff';
+var colours = ['#00ffff', '#ff00ff', '#00ff73'];
 var border = '#fff';
 
 var swide, shigh;
@@ -32,7 +32,7 @@ window.onload = function () {
       s.overflow = 'hidden';
       s.position = 'absolute';
       s.visibility = 'hidden';
-      s.backgroundColor = colour;
+      s.backgroundColor = colours[Math.floor(Math.random() * colours.length)];
       s.border = '1px solid ' + border;
       blox[i] = -1;
       blok[i] = d;
