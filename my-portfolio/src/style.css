@@ -208,3 +208,33 @@ body {
   font-size: 0.85rem;
   color: #ccc;
 }
+
+/* Responsive layout for smaller screens */
+@media (max-width: 600px) {
+  .projects-layout,
+  .feed-layout,
+  .resume-layout {
+    flex-direction: column;
+  }
+
+  .project-left,
+  .project-right,
+  .feed-left,
+  .feed-right,
+  .resume-left,
+  .resume-right {
+    flex-basis: 100%;
+  }
+
+  .project-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .nav-buttons {
+    flex-wrap: wrap;
+  }
+
+  .content {
+    padding: 0 1rem;
+  }
+}
