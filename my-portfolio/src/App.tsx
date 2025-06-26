@@ -17,7 +17,8 @@ function App() {
           <button
             key={t}
             onClick={() => setTab(t)}
-            className="tab-button"
+            className="tab-button glitch"
+            data-text={t.toUpperCase()}
             style={{ background: tab === t ? 'white' : 'transparent', color: tab === t ? 'black' : 'white' }}
           >
             {t.toUpperCase()}
