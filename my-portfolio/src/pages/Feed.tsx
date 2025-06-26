@@ -1,38 +1,39 @@
-const posts = [
-  {
-    title: 'First Update',
-    body:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero.',
-  },
-  {
-    title: 'Another Update',
-    body:
-      'Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet.',
-  },
-  {
-    title: 'Final Update',
-    body:
-      'Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta.',
-  },
-];
+import { useEffect, useState } from 'react';
 
-const Feed = () => (
-  <div className="feed-layout">
-    <div className="feed-left">
-      <h1 className="sticky-title">Feed</h1>
-      <p className="profile-description">
-        Hey there! I&#39;m Carlos, a developer who loves building web experiences.
-      </p>
+interface Post {
+  _id: string;
+  title: string;
+  body: string;
+}
+
+const Feed = () => {
+  const [posts, setPosts] = useState<Post[]>([]);
+
+  useEffect(() => {
+    fetch('/api/posts')
+      .then((res) => res.json())
+      .then((data) => setPosts(data))
+      .catch((err) => console.error('Failed to load posts', err));
+  }, []);
+
+  return (
+    <div className="feed-layout">
+      <div className="feed-left">
+        <h1 className="sticky-title">Feed</h1>
+        <p className="profile-description">
+          Hey there! I&#39;m Carlos, a developer who loves building web experiences.
+        </p>
+      </div>
+      <div className="feed-right">
+        {posts.map((post) => (
+          <div key={post._id} className="feed-block">
+            <h2>{post.title}</h2>
+            <p>{post.body}</p>
+          </div>
+        ))}
+      </div>
     </div>
-    <div className="feed-right">
-      {posts.map((post) => (
-        <div key={post.title} className="feed-block">
-          <h2>{post.title}</h2>
-          <p>{post.body}</p>
-        </div>
-      ))}
-    </div>
-  </div>
-);
+  );
+};
 
 export default Feed;
