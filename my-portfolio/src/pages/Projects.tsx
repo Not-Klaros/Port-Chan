@@ -8,9 +8,10 @@ interface Project {
 }
 
 const projects: Project[] = [
-  { title: 'Project One', image: Project1Image },
-  { title: 'Project Two', image: Project2Image },
-  { title: 'Project Three', image: Project3Image },
+  { title: '#1 BucketShark', image: Project1Image },
+  { title: '#2 Fixed Wing UAV', image: Project3Image },
+  { title: '#3 Arbitrary USB', image: Project2Image },
+  { title: '#4 Orcus', image: Project2Image },
 ];
 
 const Projects = () => (
