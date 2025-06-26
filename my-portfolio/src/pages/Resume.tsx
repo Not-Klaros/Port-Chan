@@ -4,37 +4,62 @@ const skills = ['TypeScript', 'React', 'Node.js', 'Python'];
 
 const experiences = [
   {
-    role: 'Software Engineer',
-    company: 'Example Corp',
+    role: 'Crew Member',
+    company: 'Guzman y Gomez',
     dates: '2023 - Present',
     description:
       'Developing web applications and services using modern JavaScript frameworks.',
   },
   {
-    role: 'Junior Developer',
-    company: 'Startup Inc.',
-    dates: '2021 - 2023',
+    role: 'Game Development',
+    company: 'Academy of Interactive Technology',
+    dates: '2022 - 2022',
     description:
-      'Worked on frontend interfaces and collaborated closely with design teams.',
+      'Worked on programming player activities and events.',
+  },
+  {
+    role: 'Game Design and Animation',
+    company: 'JMC Academy',
+    dates: '2022 - 2022',
+    description:
+      'Worked on animation of characters for video games.',
   },
 ];
 
 const education = [
   {
     degree: 'B.Sc. Computer Science',
-    school: 'Tech University',
-    dates: '2017 - 2021',
+    school: 'University of Wollongong',
+    dates: '2025 - 2028',
   },
+  {
+    degree: "",
+    school: "Figtree High Scool",
+    dates: "2021 - 2024",
+  },
+  {
+    degree: "Computer Science",
+    school: "NCSS Summer School",
+    dates: "2024 - 2024",
+  }
 ];
 
 const Resume = () => (
   <div className="resume-layout">
     <div className="resume-left">
-      <h1>John Doe</h1>
-      <p>Email: john.doe@example.com</p>
-      <p>Location: Anywhere</p>
+      <h1>Carlos Rodriguez</h1>
+      <p>Email: rodrigcp22@outlook.com</p>
+      <p>Location: Australia</p>
       <div className="resume-section">
-        <h2>Skills</h2>
+        <h2>Technical Skills</h2>
+        <ul>
+          {skills.map((skill) => (
+            <li key={skill}>{skill}</li>
+          ))}
+        </ul>
+      </div>
+      <div className="resume-section">
+        <h2>Soft Skills</h2>
         <ul>
           {skills.map((skill) => (
             <li key={skill}>{skill}</li>
@@ -59,8 +84,8 @@ const Resume = () => (
         <h2>Education</h2>
         {education.map((edu) => (
           <div key={edu.school} className="resume-item">
-            <h3>{edu.degree}</h3>
-            <span className="resume-dates">{edu.school}</span>
+            <h3>{edu.school}</h3>
+            <span className="resume-dates">{edu.degree}</span>
             <p>{edu.dates}</p>
           </div>
         ))}
