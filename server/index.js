@@ -4,23 +4,25 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-const app = express();
 const PORT = process.env.PORT || 3001;
+const MONGODB_URI =
+  process.env.MONGODB_URI || 'mongodb://localhost:27017/portfolio';
 
+const app = express();
 app.use(express.json());
 
-const mongoUri = process.env.MONGODB_URI;
-if (!mongoUri) {
-  console.error('Missing MONGODB_URI environment variable');
-  process.exit(1);
+async function startServer() {
+  try {
+    await mongoose.connect(MONGODB_URI);
+    console.log('MongoDB connected');
+    app.listen(PORT, () => {
+      console.log(`Server listening on port ${PORT}`);
+    });
+  } catch (err) {
+    console.error('MongoDB connection error', err);
+    process.exit(1);
+  }
 }
-
-mongoose.connect(mongoUri).then(() => {
-  console.log('MongoDB connected');
-}).catch((err) => {
-  console.error('MongoDB connection error', err);
-  process.exit(1);
-});
 
 const postSchema = new mongoose.Schema({
   title: { type: String, required: true },
@@ -73,6 +75,4 @@ app.get('/api/resume', async (req, res) => {
   res.json({ skills, experiences, education });
 });
 
-app.listen(PORT, () => {
-  console.log(`Server listening on port ${PORT}`);
-});
+startServer();
