@@ -5,7 +5,12 @@ Express server (inside `server`) used to load portfolio data from MongoDB.
 
 ## MongoDB Setup
 
-The server expects a MongoDB connection string in `server/.env`:
+The server expects a MongoDB connection string in `server/.env`.
+For security, create a **read-only** user in your database and use it in the
+connection string. The API exposes only GET endpoints and never writes to the
+database.
+
+Add the following to `server/.env`:
 
 ```
 MONGODB_URI=mongodb://<user>:<password>@<host>:<port>/<database>
