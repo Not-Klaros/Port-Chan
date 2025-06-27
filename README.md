@@ -61,9 +61,18 @@ The backend uses the following Mongoose schemas:
 ### Skill
 ```js
 {
-  name: String
+  name: String,
+  type: 'technical' | 'soft'
 }
 ```
+
+## API Endpoints
+
+- `GET /api/posts` – list posts
+- `GET /api/projects` – list projects
+- `GET /api/skills/technical` – list technical skills
+- `GET /api/skills/soft` – list soft skills
+- `GET /api/resume` – list experiences and education
 
 ## Running the App
 

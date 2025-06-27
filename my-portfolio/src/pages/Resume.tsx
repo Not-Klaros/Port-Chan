@@ -21,15 +21,25 @@ interface Skill {
 }
 
 const Resume = () => {
-  const [skills, setSkills] = useState<Skill[]>([]);
+  const [technicalSkills, setTechnicalSkills] = useState<Skill[]>([]);
+  const [softSkills, setSoftSkills] = useState<Skill[]>([]);
   const [experiences, setExperiences] = useState<Experience[]>([]);
   const [education, setEducation] = useState<Education[]>([]);
 
   useEffect(() => {
+    fetch('/api/skills/technical')
+      .then((res) => res.json())
+      .then((data) => setTechnicalSkills(data))
+      .catch((err) => console.error('Failed to load technical skills', err));
+
+    fetch('/api/skills/soft')
+      .then((res) => res.json())
+      .then((data) => setSoftSkills(data))
+      .catch((err) => console.error('Failed to load soft skills', err));
+
     fetch('/api/resume')
       .then((res) => res.json())
       .then((data) => {
-        setSkills(data.skills);
         setExperiences(data.experiences);
         setEducation(data.education);
       })
@@ -45,7 +55,7 @@ const Resume = () => {
       <div className="resume-section">
         <h2>Technical Skills</h2>
         <ul>
-          {skills.map((skill) => (
+          {technicalSkills.map((skill) => (
             <li key={skill._id}>{skill.name}</li>
           ))}
         </ul>
@@ -53,8 +63,8 @@ const Resume = () => {
       <div className="resume-section">
         <h2>Soft Skills</h2>
         <ul>
-          {skills.map((skill) => (
-            <li key={skill._id + '-soft'}>{skill.name}</li>
+          {softSkills.map((skill) => (
+            <li key={skill._id}>{skill.name}</li>
           ))}
         </ul>
       </div>

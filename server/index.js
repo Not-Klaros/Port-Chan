@@ -50,6 +50,11 @@ const educationSchema = new mongoose.Schema({
 
 const skillSchema = new mongoose.Schema({
   name: { type: String, required: true },
+  type: {
+    type: String,
+    enum: ['technical', 'soft'],
+    required: true,
+  },
 });
 
 const Post = mongoose.model('Post', postSchema);
@@ -68,11 +73,20 @@ app.get('/api/projects', async (req, res) => {
   res.json(projects);
 });
 
+app.get('/api/skills/technical', async (req, res) => {
+  const technicalSkills = await Skill.find({ type: 'technical' }).lean();
+  res.json(technicalSkills);
+});
+
+app.get('/api/skills/soft', async (req, res) => {
+  const softSkills = await Skill.find({ type: 'soft' }).lean();
+  res.json(softSkills);
+});
+
 app.get('/api/resume', async (req, res) => {
   const experiences = await Experience.find().lean();
   const education = await Education.find().lean();
-  const skills = await Skill.find().lean();
-  res.json({ skills, experiences, education });
+  res.json({ experiences, education });
 });
 
 startServer();
