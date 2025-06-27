@@ -1,6 +1,7 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
+import cors from 'cors';
 
 dotenv.config();
 
@@ -10,6 +11,7 @@ const MONGODB_URI =
 
 const app = express();
 app.use(express.json());
+app.use(cors());
 
 async function startServer() {
   try {
@@ -73,14 +75,13 @@ app.get('/api/projects', async (req, res) => {
   res.json(projects);
 });
 
-app.get('/api/skills/technical', async (req, res) => {
-  const technicalSkills = await Skill.find({ type: 'technical' }).lean();
-  res.json(technicalSkills);
-});
-
-app.get('/api/skills/soft', async (req, res) => {
-  const softSkills = await Skill.find({ type: 'soft' }).lean();
-  res.json(softSkills);
+app.get('/api/skills/:type', async (req, res) => {
+  const { type } = req.params;
+  if (type !== 'technical' && type !== 'soft') {
+    return res.status(404).send('Not found');
+  }
+  const skills = await Skill.find({ type }).lean();
+  res.json(skills);
 });
 
 app.get('/api/resume', async (req, res) => {

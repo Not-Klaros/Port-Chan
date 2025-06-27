@@ -72,6 +72,7 @@ The backend uses the following Mongoose schemas:
 - `GET /api/projects` – list projects
 - `GET /api/skills/technical` – list technical skills
 - `GET /api/skills/soft` – list soft skills
+- `GET /api/skills/:type` – `type` can be `technical` or `soft`
 - `GET /api/resume` – list experiences and education
 
 ## Running the App
