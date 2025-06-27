@@ -70,3 +70,5 @@ The backend uses the following Mongoose schemas:
 2. Create a `.env` file in `server` with your MongoDB connection string.
 3. Start the backend with `npm start` inside `server`.
 4. Run the front end with `npm run dev` inside `my-portfolio`.
+   The dev server proxies `/api` requests to `http://localhost:3001` so the
+   React app can talk to the backend without CORS issues.
