@@ -77,8 +77,8 @@ app.get('/api/projects', async (req, res) => {
 
 app.get('/api/skills/:type', async (req, res) => {
   const { type } = req.params;
-  if (type !== 'technical' && type !== 'soft') {
-    return res.status(404).send('Not found');
+  if (!['technical', 'soft'].includes(type)) {
+    return res.status(400).json({ error: 'Invalid skill type' });
   }
   const skills = await Skill.find({ type }).lean();
   res.json(skills);
