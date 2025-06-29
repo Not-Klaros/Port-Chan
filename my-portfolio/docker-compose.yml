@@ -8,4 +8,4 @@ services:
       - "3000:3000"  # Adjust this if you're using another port
     restart: unless-stopped
     environment:
-      - MONGODB_URI=mongodb://your-mongo-host:27017/portfolio
+      - MONGODB_URI=mongodb://rei.home:27017/portchan
