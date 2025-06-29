@@ -1,21 +1,31 @@
 # my-portfolio/Dockerfile
 
+FROM node:20-alpine AS build
+
+WORKDIR /app
+
+# Install dependencies
+COPY package*.json ./
+RUN npm ci
+
+# Copy the source code
+COPY . .
+
+# Build the production files
+RUN npm run build
+
 FROM node:20-alpine
 
 WORKDIR /app
 
-# Install deps
-COPY package*.json ./
-RUN npm install
+# Copy built files from the previous stage
+COPY --from=build /app .
 
-# Copy everything
-COPY . .
+# Environment setup
+ENV NODE_ENV=production
 
-# Expose the port your Express server uses (e.g., 3000 or 5173)
+# The preview server listens on this port
 EXPOSE 3000
 
-# Set environment variable (optional)
-ENV NODE_ENV production
-
-# Run your app
-CMD ["npm", "start"]
+# Start the Vite preview server
+CMD ["npm", "run", "preview", "--", "--host", "0.0.0.0", "--port", "3000"]
