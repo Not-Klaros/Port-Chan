@@ -1,11 +1,10 @@
-version: '3.8'
+version: "3.8"
 
 services:
-  portchan:
-    image: jc21/nginx-proxy-manager:latest
-    container_name: portchan-app
+  web:
+    build:
+      context: ./my-portfolio  # Change if your Dockerfile isn't in this subfolder
+    container_name: vite-portfolio-prod
     ports:
-      - "3000:3000"  # Adjust this if you're using another port
+      - "80:3000"  # 'serve' defaults to port 3000 internally
     restart: unless-stopped
-    environment:
-      - MONGODB_URI=mongodb://rei.home:27017/portchan
