@@ -1,21 +1,13 @@
-# my-portfolio/Dockerfile
+# my-portfolio Dockerfile - build React app and serve static files
 
-FROM node:20-alpine
-
+FROM node:20-alpine AS build
 WORKDIR /app
-
-# Install deps
 COPY package*.json ./
-RUN npm install
-
-# Copy everything
+RUN npm ci
 COPY . .
+RUN npm run build
 
-# Expose the port your Express server uses (e.g., 3000 or 5173)
-EXPOSE 3000
-
-# Set environment variable (optional)
-ENV NODE_ENV production
-
-# Run your app
-CMD ["npm", "start"]
+FROM nginx:stable-alpine
+COPY --from=build /app/dist /usr/share/nginx/html
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]

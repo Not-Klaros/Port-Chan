@@ -2,10 +2,10 @@ version: '3.8'
 
 services:
   portchan:
-    image: jc21/nginx-proxy-manager:latest
+    build:
+      context: ./my-portfolio
+      dockerfile: portchan.dockerfile
     container_name: portchan-app
     ports:
-      - "3000:3000"  # Adjust this if you're using another port
+      - "3000:80"
     restart: unless-stopped
-    environment:
-      - MONGODB_URI=mongodb://rei.home:27017/portchan
