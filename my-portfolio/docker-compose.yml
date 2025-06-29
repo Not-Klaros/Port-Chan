@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  portchan:
+    build: ./my-portfolio
+    container_name: portchan-app
+    ports:
+      - "3000:3000"  # Adjust this if you're using another port
+    restart: unless-stopped
+    environment:
+      - MONGODB_URI=mongodb://your-mongo-host:27017/portfolio
