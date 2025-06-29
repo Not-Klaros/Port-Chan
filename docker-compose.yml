@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   portchan:
-    build: ./my-portfolio
+    image: jc21/nginx-proxy-manager:latest
     container_name: portchan-app
     ports:
       - "3000:3000"  # Adjust this if you're using another port
