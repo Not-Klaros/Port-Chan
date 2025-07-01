@@ -1,10 +1,11 @@
-version: '3.8'
-
 services:
   vite-react-app:
-    build:
-      context: ./my-portfolio
-      dockerfile: Dockerfile
+    image: node:18
     container_name: portchan
+    working_dir: /app
+    volumes:
+      - ./my-portfolio:/app
     ports:
       - "5173:5173"
+    command: >
+      sh -c "npm install && npm run build && npx serve -s dist -l 5173"
