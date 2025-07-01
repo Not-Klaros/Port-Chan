@@ -2,9 +2,9 @@ version: '3.8'
 
 services:
   vite-react-app:
-    image: node:latest
+    image: node:20
     container_name: portchan
     ports:
       - "5173:5173"
     command: >
-      sh -c "rm -rf node_modules package-lock.json /root/.npm/_logs /root/.npm/_cacache && npm cache clean --force && npm install && npm run build && npx serve -s dist -l 5173"
+      sh -c "rm -rf node_modules /root/.npm && npm ci && npm run build && npx serve -s dist -l 5173"
