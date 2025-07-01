@@ -1,14 +1,14 @@
 version: '3.8'
 
 services:
-  bucketshark:
+  vite-react-app:
     image: node:latest
-    container_name: bucketshark
+    container_name: portchan
     working_dir: /app
     volumes:
       - ./my-portfolio:/app
       - /app/node_modules
     ports:
-      - \"5173:5173"
+      - "5173:5173"
     command: >
-      sh -c \"npm install && npm run build && npx serve -s dist -l 5173\"
+      sh -c "npm install && npm run build && npx serve -s dist -l 5173"
