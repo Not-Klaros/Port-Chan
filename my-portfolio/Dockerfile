@@ -5,7 +5,6 @@ FROM node:latest
 WORKDIR /app
 
 # Install dependencies first to leverage Docker caching
-COPY package*.json ./
 RUN npm install
 
 # Copy remaining application code
