@@ -67,3 +67,14 @@ export default tseslint.config([
   },
 ])
 ```
+
+## Running with Docker
+
+This repository includes a `docker-compose.yml` file for use with Portainer's **Git repository** deployment feature. The image is built using the provided `Dockerfile` and serves the production build on port `4173`.
+
+```bash
+# build and run locally
+docker compose up --build
+```
+
+When deploying through Portainer, select this repository and use `docker-compose.yml` as the stack file. After deployment the application will be available on port `4173` of the container host.
