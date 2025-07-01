@@ -1,87 +1,69 @@
-# My Portfolio
+# React + TypeScript + Vite
 
-This project contains a React front end (inside `my-portfolio`) and a small
-Express server (inside `server`) used to load portfolio data from MongoDB.
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-## MongoDB Setup
+Currently, two official plugins are available:
 
-The server expects a MongoDB connection string in `server/.env`.
-For security, create a **read-only** user in your database and use it in the
-connection string. The API exposes only GET endpoints and never writes to the
-database. If `MONGODB_URI` is not provided the server will fall back to
-`mongodb://localhost:27017/portfolio`.
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-Add the following to `server/.env`:
+## Expanding the ESLint configuration
 
-```
-MONGODB_URI=mongodb://<user>:<password>@<host>:<port>/<database>
-PORT=3001
-```
+If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
 
-## Data Schemas
-
-The backend uses the following Mongoose schemas:
-
-### Post
 ```js
-{
-  title: String,
-  body: String
-}
+export default tseslint.config([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
+
+      // Remove tseslint.configs.recommended and replace with this
+      ...tseslint.configs.recommendedTypeChecked,
+      // Alternatively, use this for stricter rules
+      ...tseslint.configs.strictTypeChecked,
+      // Optionally, add this for stylistic rules
+      ...tseslint.configs.stylisticTypeChecked,
+
+      // Other configs...
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
 ```
 
-### Project
+You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+
 ```js
-{
-  title: String,
-  image: String,
-  description: String
-}
+// eslint.config.js
+import reactX from 'eslint-plugin-react-x'
+import reactDom from 'eslint-plugin-react-dom'
+
+export default tseslint.config([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
+      // Enable lint rules for React
+      reactX.configs['recommended-typescript'],
+      // Enable lint rules for React DOM
+      reactDom.configs.recommended,
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
 ```
-
-### Experience
-```js
-{
-  role: String,
-  company: String,
-  dates: String,
-  description: String
-}
-```
-
-### Education
-```js
-{
-  degree: String,
-  school: String,
-  dates: String
-}
-```
-
-### Skill
-```js
-{
-  name: String,
-  type: 'technical' | 'soft'
-}
-```
-
-## API Endpoints
-
-- `GET /api/posts` – list posts
-- `GET /api/projects` – list projects
-- `GET /api/skills/technical` – list technical skills
-- `GET /api/skills/soft` – list soft skills
-- `GET /api/skills/:type` – `type` can be `technical` or `soft`
-- `GET /api/resume` – list experiences and education
-
-## Running the App
-
-1. Install dependencies in both `my-portfolio` and `server`.
-2. Create a `.env` file in `server` with your MongoDB connection string if
-   you don't want to use the local default.
-3. Start the backend with `npm start` inside `server`. The server will log
-   `MongoDB connected` once the database connection succeeds.
-4. Run the front end with `npm run dev` inside `my-portfolio`.
-   The dev server proxies `/api` requests to `http://localhost:3001` so the
-   React app can talk to the backend without CORS issues.
