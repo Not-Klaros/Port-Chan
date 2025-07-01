@@ -1,22 +1,21 @@
 # Use official Node.js 18 image
-FROM node:18
+FROM node:latest
 
 # Set working directory
 WORKDIR /app
 
-# Copy dependency files first to leverage Docker layer caching
+# Install dependencies first to leverage Docker caching
 COPY package*.json ./
-
-# Install dependencies
 RUN npm install
 
-# Copy rest of the application code
+# Copy remaining application code
 COPY . .
 
-# Expose Vite default dev server port (change if needed)
+# Build the React application
+RUN npm run build
+
+# Expose the default port
 EXPOSE 5173
 
-# Start Vite development server (or change to 'build' and serve for production)
-RUN npm run build
-CMD ["npx", "serve", "dist"]
-
+# Serve the built app using serve
+CMD ["npx", "serve", "-s", "dist", "-l", "5173"]
